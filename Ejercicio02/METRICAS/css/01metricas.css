@@ -104,10 +104,16 @@ main {
     color: var(--primary);
 }
 
+.metric-extra {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: var(--text-color);
+}
+
 canvas {
     width: 100%;
-    max-width: 400px;
-    height: 200px;
+    max-width: 200px;
+    height: 100px;
 }
 
 .procesos-lista {
