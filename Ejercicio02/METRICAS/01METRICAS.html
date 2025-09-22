@@ -21,85 +21,131 @@
     </nav>
 
     <main>
+        <!-- CPU -->
         <section id="cpu" class="tab-content active">
             <h2>CPU</h2>
             <div class="metric-container">
-                <canvas id="cpuChart"></canvas>
-                <div class="metric-value" id="cpu-value">0%</div>
-                <div class="metric-extra">
-                    <p><strong>Núcleos usados:</strong> <span id="cpu-cores">4</span></p>
-                    <p><strong>Hilos activos:</strong> <span id="cpu-threads">8</span></p>
+                <div class="metric-chart">
+                    <canvas id="cpuChart"></canvas>
+                </div>
+                <div class="metric-info">
+                    <div class="metric-value" id="cpu-value">0%</div>
+                    <div class="metric-extra">
+                        <p><strong>Núcleos usados:</strong> <span id="cpu-cores">4</span></p>
+                        <p><strong>Hilos activos:</strong> <span id="cpu-threads">8</span></p>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- Memoria -->
         <section id="memoria" class="tab-content">
             <h2>Memoria</h2>
             <div class="metric-container">
-                <canvas id="memChart"></canvas>
-                <div class="metric-value" id="memoria-value">0%</div>
-                <div class="metric-extra">
-                    <p><strong>Total:</strong> <span id="mem-total">8 GB</span></p>
-                    <p><strong>Usado:</strong> <span id="mem-usado">0 GB</span></p>
-                    <p><strong>Disponible:</strong> <span id="mem-disponible">0 GB</span></p>
+                <div class="metric-chart">
+                    <canvas id="memChart"></canvas>
+                </div>
+                <div class="metric-info">
+                    <div class="metric-value" id="memoria-value">0%</div>
+                    <div class="metric-extra">
+                        <p><strong>Total:</strong> <span id="mem-total">8 GB</span></p>
+                        <p><strong>Usado:</strong> <span id="mem-usado">0 GB</span></p>
+                        <p><strong>Disponible:</strong> <span id="mem-disponible">0 GB</span></p>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- Disco -->
         <section id="disco" class="tab-content">
             <h2>Disco C</h2>
             <div class="metric-container">
-                <canvas id="diskChart"></canvas>
-                <div class="metric-value" id="disco-value">0%</div>
-                <div class="metric-extra">
-                    <p><strong>Lectura:</strong> <span id="disco-lectura">0 MB/s</span></p>
-                    <p><strong>Escritura:</strong> <span id="disco-escritura">0 MB/s</span></p>
+                <div class="metric-chart">
+                    <canvas id="diskChart"></canvas>
+                </div>
+                <div class="metric-info">
+                    <div class="metric-value" id="disco-value">0%</div>
+                    <div class="metric-extra">
+                        <p><strong>Lectura:</strong> <span id="disco-lectura">0 MB/s</span></p>
+                        <p><strong>Escritura:</strong> <span id="disco-escritura">0 MB/s</span></p>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- Ethernet -->
         <section id="ethernet" class="tab-content">
             <h2>Ethernet</h2>
             <div class="metric-container">
-                <canvas id="netChart"></canvas>
-                <div class="metric-value" id="descarga-value">0.00 Mbps</div>
-                <div class="metric-extra">
-                    <p><strong>Subida:</strong> <span id="red-subida">0.00 Mbps</span></p>
+                <div class="metric-chart">
+                    <canvas id="netChart"></canvas>
+                </div>
+                <div class="metric-info">
+                    <div class="metric-value" id="descarga-value">0.00 Mbps</div>
+                    <div class="metric-extra">
+                        <p><strong>Subida:</strong> <span id="red-subida">0.00 Mbps</span></p>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- Extras -->
         <section id="extra" class="tab-content">
             <h2>Información Adicional</h2>
 
             <div class="metric-container">
-                <h3>Almacenamiento</h3>
-                <canvas id="storageChart"></canvas>
-                <div class="metric-value" id="almacenamiento-value">0 GB usados</div>
+                <div class="metric-chart">
+                    <canvas id="storageChart"></canvas>
+                </div>
+                <div class="metric-info">
+                    <h3>Almacenamiento</h3>
+                    <div class="metric-value" id="almacenamiento-value">0 GB usados</div>
+                </div>
             </div>
 
             <div class="metric-container">
-                <h3>Temperatura CPU</h3>
-                <div class="metric-value" id="temperatura-value">45 °C</div>
+                <div class="metric-chart">
+                    <h3>Temperatura CPU</h3>
+                </div>
+                <div class="metric-info">
+                    <div class="metric-value" id="temperatura-value">45 °C</div>
+                </div>
             </div>
 
             <div class="metric-container">
-                <h3>Tiempo de actividad</h3>
-                <div class="metric-value" id="uptime-value">00:00:00</div>
+                <div class="metric-chart">
+                    <h3>Tiempo de actividad</h3>
+                </div>
+                <div class="metric-info">
+                    <div class="metric-value" id="uptime-value">00:00:00</div>
+                </div>
             </div>
 
             <div class="metric-container">
-                <h3>Uso de GPU</h3>
-                <div class="metric-value" id="gpu-value">0%</div>
+                <div class="metric-chart">
+                    <h3>Uso de GPU</h3>
+                </div>
+                <div class="metric-info">
+                    <div class="metric-value" id="gpu-value">0%</div>
+                </div>
             </div>
 
             <div class="metric-container">
-                <h3>Procesos Activos</h3>
-                <ul id="procesos-lista" class="procesos-lista"></ul>
+                <div class="metric-chart">
+                    <h3>Procesos Activos</h3>
+                </div>
+                <div class="metric-info">
+                    <ul id="procesos-lista" class="procesos-lista"></ul>
+                </div>
             </div>
 
             <div class="metric-container">
-                <button id="exportarDatos">Exportar Datos CSV</button>
+                <div class="metric-chart">
+                    <h3>Exportar</h3>
+                </div>
+                <div class="metric-info">
+                    <button id="exportarDatos">Exportar Datos CSV</button>
+                </div>
             </div>
         </section>
     </main>
