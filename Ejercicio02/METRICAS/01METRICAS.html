@@ -17,6 +17,7 @@
         <button class="tab-button" data-tab="memoria">Memoria</button>
         <button class="tab-button" data-tab="disco">Disco C</button>
         <button class="tab-button" data-tab="ethernet">Ethernet</button>
+        <button class="tab-button" data-tab="extra">Extras</button>
     </nav>
 
     <main>
@@ -49,6 +50,30 @@
             <div class="metric-container">
                 <canvas id="netChart"></canvas>
                 <div class="metric-value" id="descarga-value">0.00 Mbps</div>
+            </div>
+        </section>
+
+        <section id="extra" class="tab-content">
+            <h2>Información Adicional</h2>
+
+            <div class="metric-container">
+                <h3>Almacenamiento</h3>
+                <canvas id="storageChart"></canvas>
+                <div class="metric-value" id="almacenamiento-value">0 GB usados</div>
+            </div>
+
+            <div class="metric-container">
+                <h3>Temperatura CPU</h3>
+                <div class="metric-value" id="temperatura-value">45 °C</div>
+            </div>
+
+            <div class="metric-container">
+                <h3>Procesos Activos</h3>
+                <ul id="procesos-lista" class="procesos-lista"></ul>
+            </div>
+
+            <div class="metric-container">
+                <button id="exportarDatos">Exportar Datos CSV</button>
             </div>
         </section>
     </main>

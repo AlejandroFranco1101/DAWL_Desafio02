@@ -88,6 +88,7 @@ main {
     border-radius: 12px;
     box-shadow: 0 0 20px var(--accent);
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .metric-value {
@@ -101,4 +102,31 @@ canvas {
     width: 100%;
     max-width: 600px;
     height: 300px;
+}
+
+.procesos-lista {
+    list-style: none;
+    padding-left: 0;
+    color: var(--text-color);
+    font-family: monospace;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.procesos-lista li {
+    margin: 4px 0;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 6px;
+    border-radius: 4px;
+}
+
+#exportarDatos {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: var(--accent);
+    border: none;
+    color: #000;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
 }
