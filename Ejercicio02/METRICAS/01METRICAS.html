@@ -1,29 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard de Métricas (Simulado)</title>
-    <link rel="stylesheet" href="css/01metricas.css">
-<script src="js/01metricas.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Simulación de Rendimiento</title>
+    <link rel="stylesheet" href="css/01metricas.css" />
 </head>
 <body>
+    <header>
+        <h1>Simulación de Rendimiento del Sistema</h1>
+        <button id="themeToggle">Cambiar Tema</button>
+    </header>
 
-    <div class="metric-container">
-        <div class="metric-title">Uso de Memoria</div>
-        <div id="memoria" class="metric-value">0<span class="unit">%</span></div>
-    </div>
-    <div class="metric-container">
-        <div class="metric-title">Uso de CPU</div>
-        <div id="cpu" class="metric-value">0<span class="unit">%</span></div>
-    </div>
-    <div class="metric-container">
-        <div class="metric-title">Velocidad de Descarga</div>
-        <div id="descarga" class="metric-value">0.00<span class="unit"> Mbps</span></div>
-    </div>
-    <div class="metric-container">
-        <div class="metric-title">Uso de Disco C:</div>
-        <div id="disco" class="metric-value">0<span class="unit">%</span></div>
-    </div>
+    <nav>
+        <button class="tab-button active" data-tab="cpu">CPU</button>
+        <button class="tab-button" data-tab="memoria">Memoria</button>
+        <button class="tab-button" data-tab="disco">Disco C</button>
+        <button class="tab-button" data-tab="ethernet">Ethernet</button>
+    </nav>
+
+    <main>
+        <section id="cpu" class="tab-content active">
+            <h2>CPU</h2>
+            <div class="metric-container">
+                <canvas id="cpuChart"></canvas>
+                <div class="metric-value" id="cpu-value">0%</div>
+            </div>
+        </section>
+
+        <section id="memoria" class="tab-content">
+            <h2>Memoria</h2>
+            <div class="metric-container">
+                <canvas id="memChart"></canvas>
+                <div class="metric-value" id="memoria-value">0%</div>
+            </div>
+        </section>
+
+        <section id="disco" class="tab-content">
+            <h2>Disco C</h2>
+            <div class="metric-container">
+                <canvas id="diskChart"></canvas>
+                <div class="metric-value" id="disco-value">0%</div>
+            </div>
+        </section>
+
+        <section id="ethernet" class="tab-content">
+            <h2>Ethernet</h2>
+            <div class="metric-container">
+                <canvas id="netChart"></canvas>
+                <div class="metric-value" id="descarga-value">0.00 Mbps</div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/01metricas.js"></script>
 </body>
 </html>
