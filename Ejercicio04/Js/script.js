@@ -131,3 +131,16 @@ function enviarCorreo() {
     limpiarError(asunto);
     limpiarError(mensaje);
 }
+
+// Alternar modo claro/oscuro
+document.getElementById("toggleTema").addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+
+    // Cambiar icono del botón 🌙 ☀️
+    const btn = document.getElementById("toggleTema");
+    if (document.body.classList.contains("dark")) {
+        btn.textContent = "☀️";
+    } else {
+        btn.textContent = "🌙";
+    }
+});
