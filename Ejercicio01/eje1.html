@@ -1,105 +1,99 @@
+
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-  <title>Lista Musical Moderna</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Musical</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../Ejercicio01/CSS/eje.css">
+
 </head>
-
 <body>
-  <div class="container">
-    <!-- HEADER -->
-    <div class="row">
-      <div class="header text-center">
-        <h1>Lista Musical</h1>
-        <h2>Ahora Suena...</h2>
-        <h3 id="now-playing-title">-</h3>
-        <p id="now-playing-details">Selecciona una canción para reproducir</p>
-      </div>
-    </div>
-
-    <div class="row">
-      <!-- FORMULARIO -->
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-header">Ingrese los datos de la Canción</div>
-          <div class="card-body">
-            <form action="javascript:void(0)" name="frmSong" id="frmSong">
-              <div class="input-group mb-3">
-                <span class="input-group-text"><i class="bi bi-music-note-beamed"></i></span>
-                <input type="text" placeholder="Nombre de la Canción" name="txtSong" class="form-control" required maxlength="60" />
-              </div>
-              <div class="input-group mb-3">
-                <span class="input-group-text"><i class="bi bi-person"></i></span>
-                <input type="text" placeholder="Nombre del Cantante" class="form-control" name="txtSinger" required maxlength="90" />
-              </div>
-              <div class="input-group mb-3">
-                <span class="input-group-text"><i class="bi bi-building"></i></span>
-                <input type="text" placeholder="Discográfica" class="form-control" name="txtLabel" required maxlength="60" />
-              </div>
-              <div class="input-group mb-3">
-                <span class="input-group-text"><i class="bi bi-clock"></i></span>
-                <input type="text" placeholder="Duración" class="form-control" name="txtDuration" required maxlength="20" />
-              </div>
-              <div class="input-group mb-3">
-                <span class="input-group-text"><i class="bi bi-globe"></i></span>
-                <input type="text" placeholder="Nacionalidad" class="form-control" name="txtNationality" required maxlength="36" />
-              </div>
-              <div class="input-group mb-4">
-                <span class="input-group-text"><i class="bi bi-image"></i></span>
-                <input type="url" placeholder="URL Portada" class="form-control" name="txtCover" />
-              </div>
-              <div class="d-flex justify-content-center">
-                <button type="submit" name="addSong" id="addSong" class="btn btn-success w-50">Guardar</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-
-      <!-- PANEL DE REPRODUCCIÓN -->
-      <div class="col-md-6">
-        <div class="now-playing" id="nowPlayingPanel">
-          <h4 class="text-center">Reproduciendo ahora:</h4>
-          <div class="row align-items-center">
-            <div class="col-md-5 text-center">
-              <img id="coverImage" src="https://i.imgur.com/vV6fCwO.png" alt="Portada" class="cover-img">
+    <div class="container">
+        <div class="row">
+            <div class="header">
+                <h1>Lista Musical</h1>
+                <h2>Ahora Suena...</h2>
+                <h3 id="now-playing-title">-</h3>
+                <p id="now-playing-details">Selecciona una canción para reproducir</p>
             </div>
-            <div class="col-md-7" id="nowPlayingDetails"></div>
-          </div>
         </div>
-      </div>
-    </div>
 
-    <!-- TABLA DE CANCIONES -->
-    <div class="row mt-4">
-      <div class="col-12">
-        <h2 class="text-center mb-3">Lista de Canciones</h2>
-        <table class="table table-hover table-striped">
-          <thead class="table-dark">
-            <tr>
-              <th>Id</th>
-              <th>Canción</th>
-              <th>Cantante</th>
-              <th>Discográfica</th>
-              <th>Duración</th>
-              <th>Nacionalidad</th>
-              <th>Operaciones</th>
-            </tr>
-          </thead>
-          <tbody id="songList"></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Ingrese los datos de la Canción</div>
+                    <div class="card-body">
+                        <form id="frmSong">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="bi bi-music-note-beamed"></i></span>
+                                <input type="text" placeholder="Nombre de la Canción" name="txtSong" class="form-control" required maxlength="60" />
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                <input type="text" placeholder="Nombre del Cantante" name="txtSinger" class="form-control" required maxlength="90" />
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="bi bi-building"></i></span>
+                                <input type="text" placeholder="Discográfica" name="txtLabel" class="form-control" required maxlength="60" />
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="bi bi-clock"></i></span>
+                                <input type="text" placeholder="Duración (mm:ss)" name="txtDuration" class="form-control" required maxlength="5" />
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="bi bi-globe"></i></span>
+                                <input type="text" placeholder="Nacionalidad" name="txtNationality" class="form-control" required maxlength="36" />
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="bi bi-image"></i></span>
+                                <input type="text" placeholder="URL de la imagen de portada" name="txtCover" class="form-control" />
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-success w-50">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
- 
-  <script src="../Ejercicio01/JS/eje.js">
-   
-  </script>
+            <div class="col-md-6">
+                <div class="now-playing" id="nowPlayingPanel">
+                    <div id="coverImageContainer" class="default-cover">
+                        <span>Portada</span>
+                    </div>
+                    <div class="now-playing-details" id="nowPlayingDetails">
+                        <p>Aquí se mostrarán los detalles de la canción seleccionada</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center mb-3">Lista de Canciones</h2>
+                <table class="table table-hover table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Id</th>
+                            <th>Portada</th>
+                            <th>Canción</th>
+                            <th>Cantante</th>
+                            <th>Discográfica</th>
+                            <th>Duración</th>
+                            <th>Nacionalidad</th>
+                            <th>Operaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="songList">
+                        <!-- Las canciones se cargarán aquí dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="../Ejercicio01/JS/eje.js"></script>
 </body>
-
 </html>
