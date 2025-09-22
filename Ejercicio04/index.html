@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Correo nuevo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Mensaje de éxito -->
+    <div id="mensajeExito" class="mensaje-exito" style="display:none;">
+        ✅ Correo enviado exitosamente!
+    </div>
+
+    <div class="correo" id="panelCorreo">
+        <div class="top-bar">Correo nuevo</div>
+
+        <div class="acciones">
+            <button type="button" class="btn" onclick="enviarCorreo()">Enviar</button>
+            <label for="adjunto" style="cursor:pointer;">Adjuntar archivo</label>
+            <input type="file" id="adjunto" accept=".jpg,.png,.docx,.pdf" onchange="validarArchivo(this)" />
+        </div>
+
+        <div class="campo">
+            <label>De:</label>
+            <input type="text" id="de" placeholder="Nombre <correo@ejemplo.com>" onblur="validarCorreo(this)" onfocus="limpiarError(this)">
+        </div>
+
+        <div class="campo">
+            <label>Para:</label>
+            <input type="text" id="para" placeholder="Nombre <correo@ejemplo.com>" onblur="validarCorreo(this)" onfocus="limpiarError(this)">
+        </div>
+
+        <div class="campo">
+            <label>CC:</label>
+            <input type="text" id="cc" placeholder="Opcional" onblur="validarCorreo(this)" onfocus="limpiarError(this)">
+        </div>
+
+        <div class="campo">
+            <label>CCO:</label>
+            <input type="text" id="cco" placeholder="Opcional" onblur="validarCorreo(this)" onfocus="limpiarError(this)">
+        </div>
+
+        <div class="asunto">
+            <input type="text" id="asunto" placeholder="Agregar un asunto" onblur="validarTexto(this)" onfocus="limpiarError(this)">
+        </div>
+
+        <div class="mensaje">
+            <textarea id="mensaje" placeholder="Escriba su mensaje..." onblur="validarTexto(this)" onfocus="limpiarError(this)"></textarea>
+        </div>
+    </div>
+
+    <!-- Pantalla de resultados -->
+    <div class="resultado" id="resultado">
+        <h3>📧 Datos del correo enviado:</h3>
+        <p><b>De:</b> <span id="rDe"></span></p>
+        <p><b>Para:</b> <span id="rPara"></span></p>
+        <p><b>CC:</b> <span id="rCC"></span></p>
+        <p><b>CCO:</b> <span id="rCCO"></span></p>
+        <p><b>Asunto:</b> <span id="rAsunto"></span></p>
+        <p><b>Mensaje:</b><br><pre id="rMensaje" style="white-space:pre-wrap;"></pre></p>
+        <p><b>Archivo adjunto:</b> <span id="rAdjunto"></span></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
