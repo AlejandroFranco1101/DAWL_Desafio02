@@ -1,0 +1,36 @@
+body {
+    font-family: sans-serif;
+    margin: 50px;
+}
+
+.menu-contenedor {
+    position: relative;
+    width: 200px;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+}
+
+#menu-desplegable {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #444;
+    max-height: 0; /* Por defecto, el menú está oculto */
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out; /* Animación de despliegue */
+}
+
+#menu-desplegable li a {
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    border-top: 1px solid #555;
+}

@@ -1,0 +1,13 @@
+.contenedor-barra {
+    width: 200px;
+    height: 20px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+}
+
+#barra-progreso {
+    height: 100%;
+    width: 0;
+    background-color: dodgerblue;
+    transition: width 0.3s ease-in-out;
+}

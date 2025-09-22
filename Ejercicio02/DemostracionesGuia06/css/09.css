@@ -1,0 +1,8 @@
+li {
+    cursor: pointer;
+}
+
+.resaltado {
+    background-color: yellow;
+    font-weight: bold;
+}

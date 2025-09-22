@@ -1,0 +1,15 @@
+.base {
+    width: 200px;
+    height: 100px;
+    background-color: lightgray;
+    border: 2px solid gray;
+    line-height: 100px;
+    text-align: center;
+    transition: background-color 0.5s ease;
+}
+
+.resaltado {
+    background-color: gold;
+    border-color: goldenrod;
+    font-weight: bold;
+}

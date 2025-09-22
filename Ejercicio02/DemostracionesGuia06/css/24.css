@@ -1,0 +1,33 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.contenedor-padre {
+    position: relative; /* Este es el ancestro posicionado */
+    width: 400px;
+    height: 250px;
+    background-color: #f0f0f0;
+    border: 2px dashed #ccc;
+    margin: 20px auto;
+}
+
+.caja {
+    width: 120px;
+    height: 60px;
+    background-color: lightblue;
+    border: 2px solid royalblue;
+    line-height: 60px;
+    transition: all 0.5s ease;
+}
+
+.caja-estatica {
+    background-color: lightgray;
+    position: static;
+}
+
+#caja-absolute {
+    position: absolute;
+    background-color: tomato;
+    border-color: darkred;
+}

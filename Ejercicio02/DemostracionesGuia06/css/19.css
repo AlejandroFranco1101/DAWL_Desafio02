@@ -1,0 +1,32 @@
+body {
+    font-family: sans-serif;
+    margin: 50px;
+}
+
+#listaCompras {
+    list-style: none;
+    padding: 0;
+}
+
+#listaCompras li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f4f4f4;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.eliminar-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.eliminar-btn:hover {
+    background-color: darkred;
+}

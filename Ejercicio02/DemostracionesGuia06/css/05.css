@@ -1,0 +1,11 @@
+input {
+    border: 1px solid #ccc;
+}
+
+.valido {
+    border-color: green;
+}
+
+.invalido {
+    border-color: red;
+}

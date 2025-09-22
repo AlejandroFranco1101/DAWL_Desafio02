@@ -1,0 +1,7 @@
+#cuadro {
+    width: 100px;
+    height: 100px;
+    background-color: darkcyan;
+    opacity: 1;
+    transition: opacity 0.5s;
+}

@@ -1,0 +1,23 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+    height: 200vh; /* Para forzar el scroll */
+}
+
+.contenido {
+    margin-top: 50px;
+    padding-top: 50px;
+    background-color: #fafafa;
+}
+
+#caja-fixed {
+    position: fixed;
+    width: 100px;
+    height: 50px;
+    background-color: steelblue;
+    color: white;
+    line-height: 50px;
+    right: 20px;
+    bottom: 20px;
+    transition: all 0.5s ease;
+}
