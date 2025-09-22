@@ -31,8 +31,12 @@
                 <div class="metric-info">
                     <div class="metric-value" id="cpu-value">0%</div>
                     <div class="metric-extra">
+                        <p><strong>Utilización:</strong> <span id="cpu-uso">0%</span></p>
                         <p><strong>Núcleos usados:</strong> <span id="cpu-cores">4</span></p>
-                        <p><strong>Hilos activos:</strong> <span id="cpu-threads">8</span></p>
+                        <p><strong>Velocidad:</strong> <span id="cpu-speed">0.00 GHz</span></p>
+                        <p><strong>Procesos activos:</strong> <span id="cpu-processes">0</span></p>
+                        <p><strong>Tiempo encendido:</strong> <span id="cpu-uptime">00:00:00</span></p>
+                        <p><strong>Información del procesador:</strong> <span id="cpu-info">Intel Core i7</span></p>
                     </div>
                 </div>
             </div>
@@ -48,15 +52,18 @@
                 <div class="metric-info">
                     <div class="metric-value" id="memoria-value">0%</div>
                     <div class="metric-extra">
-                        <p><strong>Total:</strong> <span id="mem-total">8 GB</span></p>
-                        <p><strong>Usado:</strong> <span id="mem-usado">0 GB</span></p>
-                        <p><strong>Disponible:</strong> <span id="mem-disponible">0 GB</span></p>
+                        <p><strong>Utilización:</strong> <span id="mem-uso">0%</span></p>
+                        <p><strong>Velocidad:</strong> <span id="mem-speed">0.00 MHz</span></p>
+                        <p><strong>Total de memoria:</strong> <span id="mem-total">8 GB</span></p>
+                        <p><strong>Memoria utilizada:</strong> <span id="mem-usado">0 GB</span></p>
+                        <p><strong>Memoria disponible:</strong> <span id="mem-disponible">0 GB</span></p>
+                        <p><strong>Información de la memoria:</strong> <span id="mem-info">8 GB DDR4</span></p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Disco -->
+        <!-- Disco C -->
         <section id="disco" class="tab-content">
             <h2>Disco C</h2>
             <div class="metric-container">
@@ -66,8 +73,12 @@
                 <div class="metric-info">
                     <div class="metric-value" id="disco-value">0%</div>
                     <div class="metric-extra">
+                        <p><strong>Utilización:</strong> <span id="disco-uso">0%</span></p>
                         <p><strong>Lectura:</strong> <span id="disco-lectura">0 MB/s</span></p>
                         <p><strong>Escritura:</strong> <span id="disco-escritura">0 MB/s</span></p>
+                        <p><strong>Tiempo activo:</strong> <span id="disco-uptime">00:00:00</span></p>
+                        <p><strong>Tiempo promedio de respuesta:</strong> <span id="disco-respuesta">0 ms</span></p>
+                        <p><strong>Información del disco:</strong> <span id="disco-info">SSD 500 GB</span></p>
                     </div>
                 </div>
             </div>
@@ -81,9 +92,15 @@
                     <canvas id="netChart"></canvas>
                 </div>
                 <div class="metric-info">
-                    <div class="metric-value" id="descarga-value">0.00 Mbps</div>
+                    <div class="metric-value" id="ethernet-value">0.00 Mbps</div>
                     <div class="metric-extra">
-                        <p><strong>Subida:</strong> <span id="red-subida">0.00 Mbps</span></p>
+                        <p><strong>Utilización:</strong> <span id="ethernet-uso">0.00 Mbps</span></p>
+                        <p><strong>Subida:</strong> <span id="ethernet-subida">0.00 Mbps</span></p>
+                        <p><strong>Bajada:</strong> <span id="ethernet-bajada">0.00 Mbps</span></p>
+                        <p><strong>Información de la red:</strong> <span id="ethernet-info">Ethernet 1 Gbps</span></p>
+                        <p><strong>IPv4:</strong> <span id="ipv4">192.168.1.1</span></p>
+                        <p><strong>IPv6:</strong> <span id="ipv6">fe80::d4a8:6435:2d20:ff2f</span></p>
+                        <p><strong>Gráfico de señal WiFi:</strong> <canvas id="wifi-signal"></canvas></p>
                     </div>
                 </div>
             </div>
@@ -92,7 +109,6 @@
         <!-- Extras -->
         <section id="extra" class="tab-content">
             <h2>Información Adicional</h2>
-
             <div class="metric-container">
                 <div class="metric-chart">
                     <canvas id="storageChart"></canvas>
