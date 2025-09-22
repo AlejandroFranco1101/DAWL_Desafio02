@@ -88,8 +88,8 @@ function crearGraficoTorta(id, usados, libres) {
 document.addEventListener('DOMContentLoaded', () => {
     cpuChart = crearGrafico("cpuChart", "CPU", "#00ffff");
     memChart = crearGrafico("memChart", "Memoria", "#8a2be2");
-    diskChart = crearGrafico("diskChart", "Disco", "#00f0a8");
-    netChart = crearGrafico("netChart", "Red", "#ffffff");
+    diskChart = crearGrafico("diskChart", "Disco", "#1400f0ff");
+    netChart = crearGrafico("netChart", "Red", "#aa2828ff");
     storageChart = crearGraficoTorta("storageChart", 200, 300);
     actualizarSimulacion();
     setInterval(actualizarSimulacion, 2000);
