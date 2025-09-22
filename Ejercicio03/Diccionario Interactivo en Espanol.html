@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diccionario Interactivo de Español</title>
+    <style>
+        :root {
+            --teal-primary: #008080;
+            --teal-light: #20B2AA;
+            --teal-dark: #006666;
+            --accent-yellow: #FFD700;
+            --accent-orange: #FFA500;
+            --text-dark: #333;
+            --text-light: #fff;
+            --bg-light: #f9f9f9;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(90deg, var(--teal-primary), var(--teal-light));
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .header-decoration {
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .search-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        #searchInput {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid var(--teal-light);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        #searchInput:focus {
+            border-color: var(--teal-primary);
+            box-shadow: 0 0 0 3px rgba(0, 128, 128, 0.2);
+        }
+
+        #searchButton {
+            padding: 15px 25px;
+            background: linear-gradient(135deg, var(--teal-primary), var(--teal-light));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0, 128, 128, 0.3);
+        }
+
+        #searchButton:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 128, 128, 0.4);
+        }
+
+        .results-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .word-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            border-left: 5px solid var(--teal-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .word-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-left-color: var(--teal-primary);
+        }
+
+        .word-card h3 {
+            color: var(--teal-primary);
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .word-card p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .word-card.selected {
+            background: linear-gradient(135deg, #e0f2f1, #b2dfdb);
+            border-left-color: var(--accent-orange);
+        }
+
+        .meaning-container {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .meaning-container.active {
+            display: block;
+        }
+
+        .meaning-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--teal-light);
+        }
+
+        .meaning-header h2 {
+            color: var(--teal-primary);
+            font-size: 1.8rem;
+        }
+
+        #showMeaning {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
+            color: var(--text-dark);
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(255, 165, 0, 0.3);
+        }
+
+        #showMeaning:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(255, 165, 0, 0.4);
+        }
+
+        .meaning-content {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .instructions {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-top: 30px;
+            font-size: 1rem;
+            color: #666;
+            border-left: 5px solid var(--accent-yellow);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .results-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-box {
+                flex-direction: column;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-decoration"></div>
+            <h1>Diccionario Interactivo de Español</h1>
+            <p>Explora el significado de las palabras más comunes del idioma español</p>
+        </header>
+
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Escribe una palabra para filtrar...">
+                <button id="searchButton">Buscar</button>
+            </div>
+            <p>Escribe en el campo de búsqueda para filtrar la lista de palabras. Haz clic en una palabra para seleccionarla y luego en "Mostrar Significado" para ver su definición.</p>
+        </div>
+
+        <div class="results-container" id="resultsContainer">
+            <!-- Las palabras se cargarán aquí dinámicamente -->
+        </div>
+
+        <div class="meaning-container" id="meaningContainer">
+            <div class="meaning-header">
+                <h2 id="selectedWord">Palabra Seleccionada</h2>
+                <button id="showMeaning">Mostrar Significado</button>
+            </div>
+            <div class="meaning-content" id="meaningContent">
+                <!-- El significado se cargará aquí -->
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3>Instrucciones de uso:</h3>
+            <ul>
+                <li>Escribe en el campo de búsqueda para filtrar la lista de palabras</li>
+                <li>Haz clic en cualquier palabra para seleccionarla</li>
+                <li>Presiona el botón "Mostrar Significado" para ver la definición de la palabra seleccionada</li>
+                <li>Puedes seguir filtrando y seleccionando otras palabras mientras ves un significado</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Datos proporcionados
+        const palabrasInfo = {
+            'Ser': 'Existir o tener una cualidad o identidad.',
+            'Estar': 'Hallarse en un lugar, situación o estado.',
+            'Tener': 'Poseer algo, ya sea un objeto o una cualidad.',
+            'Hacer': 'Realizar una acción o fabricar algo.',
+            'Ir': 'Moverse de un lugar a otro.',
+            'Poder': 'Ser capaz o tener la facultad para hacer algo.',
+            'Saber': 'Tener conocimiento sobre algo.',
+            'Decir': 'Expresar algo con palabras.',
+            'Ver': 'Percibir algo con la vista.',
+            'Querer': 'Desear algo o a alguien.',
+            'Hablar': 'Articular sonidos para comunicarse.',
+            'Dar': 'Entregar algo a otra persona.',
+            'Poner': 'Colocar algo en un lugar.',
+            'Venir': 'Acercarse al lugar donde se encuentra el hablante.',
+            'Llamar': 'Pronunciar el nombre de una persona para que atienda.',
+            'Comer': 'Ingerir alimentos.',
+            'Beber': 'Ingerir líquidos.',
+            'Dormir': 'Estar en estado de reposo inconsciente.',
+            'Entender': 'Comprender el significado de algo.',
+            'Llegar': 'Alcanzar un destino.',
+            'Empezar': 'Iniciar una acción o proceso.',
+            'Terminar': 'Dar fin o concluir algo.',
+            'Persona': 'Ser humano, individuo.',
+            'Hombre': 'Ser humano de sexo masculino.',
+            'Mujer': 'Ser humano de sexo femenino.',
+            'Niño': 'Persona que se encuentra en la infancia.',
+            'Amigo': 'Persona con la que se tiene una relación de amistad.',
+            'Familia': 'Conjunto de personas unidas por lazos de parentesco.',
+            'Casa': 'Edificio o construcción destinada a la vivienda.',
+            'Ciudad': 'Población grande y con gran cantidad de habitantes.',
+            'País': 'Territorio geográfico que constituye una nación.',
+            'Mundo': 'El planeta Tierra.',
+            'Día': 'Período de 24 horas.',
+            'Noche': 'Período de oscuridad.',
+            'Semana': 'Período de siete días consecutivos.',
+            'Tiempo': 'La duración de las cosas sujetas a cambio.',
+            'Agua': 'Líquido transparente e incoloro, esencial para la vida.',
+            'Comida': 'Cualquier sustancia comestible.',
+            'Dinero': 'Medio de pago y de intercambio.',
+            'Trabajo': 'Actividad que se realiza para obtener un beneficio.',
+            'Coche': 'Vehículo para transportarse.',
+            'Libro': 'Conjunto de hojas unidas con un texto escrito.',
+            'Color': 'Cualidad de la luz que el ojo percibe.',
+            'Parte': 'Porción de un todo.',
+            'Problema': 'Cuestión que requiere una solución.',
+            'Grande': 'Que tiene un tamaño considerable.',
+            'Pequeño': 'Que tiene un tamaño reducido.',
+            'Bueno': 'Que tiene valor positivo o que es de calidad.',
+            'Malo': 'Que tiene un valor negativo o que carece de calidad.',
+            'Nuevo': 'Que se usa por primera vez.',
+            'Viejo': 'Que tiene mucha edad o mucho tiempo.',
+            'Alto': 'Que tiene una altura o estatura considerable.',
+            'Bajo': 'Que tiene poca altura o estatura.',
+            'Feliz': 'Que se siente alegre.',
+            'Triste': 'Que siente pena o melancolía.',
+            'Fácil': 'Que no presenta dificultad para ser realizado.',
+            'Difícil': 'Que requiere esfuerzo o habilidad para ser realizado.',
+            'Rápido': 'Que se mueve a gran velocidad.',
+            'Lento': 'Que se mueve con poca velocidad.',
+            'Caliente': 'Que tiene una temperatura elevada.',
+            'Frío': 'Que tiene una temperatura baja.',
+            'Cansado': 'Que siente falta de energía o fatiga.',
+            'Fuerte': 'Que tiene gran fuerza física.',
+            'Débil': 'Que tiene poca fuerza.',
+            'Amable': 'Que se comporta de manera agradable y cortés.',
+            'Aquí': 'En este lugar.',
+            'Ahora': 'En este momento.',
+            'Hoy': 'En el día presente.',
+            'Ayer': 'En el día anterior a hoy.',
+            'Siempre': 'En todo momento.',
+            'Nunca': 'En ningún momento.',
+            'Mucho': 'En gran cantidad.',
+            'Poco': 'En pequeña cantidad.',
+            'Bien': 'De manera correcta o satisfactoria.',
+            'Mal': 'De manera incorrecta o insatisfactoria.',
+            'Sí': 'Expresión para afirmar algo.',
+            'No': 'Expresión para negar algo.',
+            'Con': 'Indica compañía o medio.',
+            'Sin': 'Indica ausencia o falta de algo.',
+            'Para': 'Indica propósito, destino o destinatario.',
+            'Pero': 'Conjunción que introduce una objeción o contraste.',
+        };
+
+        // Variables globales
+        let selectedWord = '';
+        let filteredWords = Object.keys(palabrasInfo);
+
+        // Elementos del DOM
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+        const resultsContainer = document.getElementById('resultsContainer');
+        const meaningContainer = document.getElementById('meaningContainer');
+        const selectedWordElement = document.getElementById('selectedWord');
+        const meaningContent = document.getElementById('meaningContent');
+        const showMeaningButton = document.getElementById('showMeaning');
+
+        // Función para renderizar las palabras
+        function renderWords(words) {
+            resultsContainer.innerHTML = '';
+            
+            if (words.length === 0) {
+                resultsContainer.innerHTML = '<div class="no-results">No se encontraron palabras que coincidan con tu búsqueda.</div>';
+                return;
+            }
+            
+            words.forEach(word => {
+                const wordCard = document.createElement('div');
+                wordCard.className = 'word-card';
+                if (word === selectedWord) {
+                    wordCard.classList.add('selected');
+                }
+                
+                wordCard.innerHTML = `
+                    <h3>${word}</h3>
+                    <p>${palabrasInfo[word].substring(0, 100)}...</p>
+                `;
+                
+                wordCard.addEventListener('click', () => {
+                    // Remover la clase 'selected' de todas las tarjetas
+                    document.querySelectorAll('.word-card').forEach(card => {
+                        card.classList.remove('selected');
+                    });
+                    
+                    // Agregar la clase 'selected' a la tarjeta clickeada
+                    wordCard.classList.add('selected');
+                    
+                    // Actualizar la palabra seleccionada
+                    selectedWord = word;
+                    selectedWordElement.textContent = word;
+                    
+                    // Ocultar el significado hasta que se presione el botón
+                    meaningContainer.classList.remove('active');
+                });
+                
+                resultsContainer.appendChild(wordCard);
+            });
+        }
+
+        // Función para filtrar palabras usando expresiones regulares
+        function filterWords(searchTerm) {
+            if (!searchTerm) {
+                return Object.keys(palabrasInfo);
+            }
+            
+            // Crear expresión regular para búsqueda insensible a mayúsculas/minúsculas
+            const regex = new RegExp(searchTerm, 'i');
+            return Object.keys(palabrasInfo).filter(word => regex.test(word));
+        }
+
+        // Función para mostrar el significado de la palabra seleccionada
+        function showMeaning() {
+            if (!selectedWord) {
+                alert('Por favor, selecciona una palabra primero.');
+                return;
+            }
+            
+            meaningContent.textContent = palabrasInfo[selectedWord];
+            meaningContainer.classList.add('active');
+            
+            // Desplazarse suavemente hacia el significado
+            meaningContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Event Listeners
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.trim();
+            filteredWords = filterWords(searchTerm);
+            renderWords(filteredWords);
+        });
+
+        searchButton.addEventListener('click', () => {
+            const searchTerm = searchInput.value.trim();
+            filteredWords = filterWords(searchTerm);
+            renderWords(filteredWords);
+        });
+
+        showMeaningButton.addEventListener('click', showMeaning);
+
+        // Inicializar la aplicación
+        document.addEventListener('DOMContentLoaded', () => {
+            renderWords(filteredWords);
+        });
+    </script>
+</body>
+</html>
